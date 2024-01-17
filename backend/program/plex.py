@@ -105,7 +105,7 @@ class Plex(threading.Thread):
         if item.type == "episode":
             item_type = "show"
         for section in self.plex.library.sections():
-            if section.type != item_type:
+            if section.type != item_type and not self._is_wanted_section(section):
                 continue
 
             if self._update_section(section, item):
